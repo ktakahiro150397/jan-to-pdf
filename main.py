@@ -1,33 +1,34 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import csv,barcode
-from barcode_data import barcodeData
+import csv
+import barcode
 from barcode.writer import ImageWriter
+from barcode_data import barcodeData
 from make_pdf import MakePdf
 
-output_pic_dir = "output_pic"
-output_pdf_file = "output_pdf/output.pdf"
+OUTPUT_PIC_DIR = "output_pic"
+OUTPUT_PDF_FILE = "output_pdf/output.pdf"
 
 def main():
 
     data = []
 
     # csvの読み込み
-    with open(u'barcode_base.csv', "r") as f:
+    with open(u'barcode_base.csv', "r",encoding="UTF-8") as f:
 
         # csvから内容を一括で取り出す
         reader = csv.reader(f)
 
         # 1行ずつ取り出す
         for row in reader:
-            barcode_path = f"{output_pic_dir}/{row[0]}.png"
+            barcode_path = f"{OUTPUT_PIC_DIR}/{row[0]}.png"
             product_name = row[1]
 
             # JANコード画像の生成
             jan = barcode.get('jan', product_name, writer=ImageWriter())
             # JANコード画像の保存
-            filename = jan.save(f"{output_pic_dir}/{row[0]}",options={
+            jan.save(f"{OUTPUT_PIC_DIR}/{row[0]}",options={
                 #'module_height':37.29,
                 #'module_width':25.93,
                 'quiet_zone':2,
@@ -42,8 +43,8 @@ def main():
         print(d.barcode_path, d.product_name)
 
     # PDF出力
-    pdfMaker = MakePdf(output_pdf_file, data)
-    pdfMaker.make_pdf()
+    pdf_maker = MakePdf(OUTPUT_PDF_FILE, data)
+    pdf_maker.make_pdf()
 
 if __name__ == "__main__":
     main()

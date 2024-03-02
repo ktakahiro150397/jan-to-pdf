@@ -4,9 +4,10 @@
 import csv,barcode
 from barcode_data import barcodeData
 from barcode.writer import ImageWriter
+from make_pdf import MakePdf
 
 output_pic_dir = "output_pic"
-
+output_pdf_file = "output_pdf/output.pdf"
 
 def main():
 
@@ -39,6 +40,10 @@ def main():
     # データの表示
     for d in data:
         print(d.barcode_path, d.product_name)
+
+    # PDF出力
+    pdfMaker = MakePdf(output_pdf_file, data)
+    pdfMaker.make_pdf()
 
 if __name__ == "__main__":
     main()

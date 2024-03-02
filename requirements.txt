@@ -1,7 +1,9 @@
+chardet==5.2.0
 Levenshtein==0.25.0
 pillow==10.2.0
 python-barcode==0.15.1
 python-Levenshtein==0.25.0
 rapidfuzz==3.6.1
+reportlab==4.1.0
 setuptools==68.2.2
 wheel==0.41.2

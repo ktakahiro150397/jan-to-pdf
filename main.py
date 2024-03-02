@@ -15,7 +15,7 @@ def main():
     data = []
 
     # csvの読み込み
-    with open(u'barcode_base.csv', "r",encoding="UTF-8") as f:
+    with open('barcode_base.csv', "r",encoding="UTF-8") as f:
 
         # csvから内容を一括で取り出す
         reader = csv.reader(f)
@@ -23,10 +23,11 @@ def main():
         # 1行ずつ取り出す
         for row in reader:
             barcode_path = f"{OUTPUT_PIC_DIR}/{row[0]}.png"
-            product_name = row[1]
+            product_name = row[0]
+            jan_code = row[1]
 
             # JANコード画像の生成
-            jan = barcode.get('jan', product_name, writer=ImageWriter())
+            jan = barcode.get('jan', jan_code, writer=ImageWriter())
             # JANコード画像の保存
             jan.save(f"{OUTPUT_PIC_DIR}/{row[0]}",options={
                 #'module_height':37.29,

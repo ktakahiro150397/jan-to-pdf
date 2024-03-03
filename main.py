@@ -23,8 +23,9 @@ def main():
         # 1行ずつ取り出す
         for row in reader:
             barcode_path = f"{OUTPUT_PIC_DIR}/{row[0]}.png"
-            product_name = row[0]
-            jan_code = row[1]
+            product_id = row[0]
+            product_name = row[1]
+            jan_code = row[2]
 
             # JANコード画像の生成
             jan = barcode.get('jan', jan_code, writer=ImageWriter())
@@ -37,11 +38,11 @@ def main():
                 #'text_distance':5,
                 #'font_path':'C:\\users\\hogehoge\\appdata\\local\\microsoft\\windows\\fonts\\ocrb.ttf'
                 })
-            data.append(barcodeData(barcode_path, product_name))
+            data.append(barcodeData(barcode_path,product_id, product_name))
 
     # データの表示
     for d in data:
-        print(d.barcode_path, d.product_name)
+        print(d.barcode_path,d.product_id, d.product_name)
 
     # PDF出力
     pdf_maker = MakePdf(OUTPUT_PDF_FILE, data)

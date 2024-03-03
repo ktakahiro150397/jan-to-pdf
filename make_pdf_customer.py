@@ -1,5 +1,4 @@
 from typing import List
-from barcode_data import barcodeData
 from customer_data import customerData
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, portrait

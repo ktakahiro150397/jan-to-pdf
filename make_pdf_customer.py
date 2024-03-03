@@ -1,9 +1,9 @@
 from typing import List
-from customer_data import customerData
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, portrait
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from customer_data import customerData
 
 BARCODE_VERTICAL_INITIAL = 750
 BARCODE_VERTICAL_DIFF = 150
@@ -58,8 +58,10 @@ class MakePdfCustomer:
 
         page.drawString(x=position_x,y=position_y,text=customer_data.customer_no)
         page.drawString(x=position_x,y=position_y-font_size*1.2,text=customer_data.customer_name)
-        page.drawImage(customer_data.barcode_path,position_x,position_y-font_size*1.2-105,
-                       width=200,height=100)
+        page.drawImage(customer_data.barcode_path,position_x-140,position_y-font_size*1.2-105,
+                       height=100,
+                       preserveAspectRatio=True,
+                       )
         
     def split_list(self,customer_data:List[customerData],n:int):
         for idx in range(0,len(customer_data),n):

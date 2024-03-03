@@ -41,12 +41,10 @@ def output_jan_pdf():
             jan = barcode.get('jan', jan_code, writer=ImageWriter())
             # JANコード画像の保存
             jan.save(f"{OUTPUT_PIC_DIR}/{row[0]}",options={
-                #'module_height':37.29,
-                #'module_width':25.93,
+                'font_size':12,
+                'text_distance':5,
+                'font_path':'./OCRB.TTF',
                 'quiet_zone':2,
-                #'font_size':40,
-                #'text_distance':5,
-                #'font_path':'C:\\users\\hogehoge\\appdata\\local\\microsoft\\windows\\fonts\\ocrb.ttf'
                 })
             data.append(barcodeData(barcode_path,product_id, product_name))
 
@@ -77,12 +75,10 @@ def output_customer_pdf():
             customer = barcode.get('nw-7', customer_no, writer=ImageWriter())
             # JANコード画像の保存
             customer.save(f"{OUTPUT_PIC_DIR_CUSTOMER}/{row[0]}",options={
-                #'module_height':37.29,
-                #'module_width':25.93,
+                'font_size':12,
+                'text_distance':5,
+                'font_path':'./OCRB.TTF',
                 'quiet_zone':2,
-                #'font_size':40,
-                #'text_distance':5,
-                #'font_path':'C:\\users\\hogehoge\\appdata\\local\\microsoft\\windows\\fonts\\ocrb.ttf'
                 })
             data.append(customerData(barcode_path,customer_no, customer_name))
 

@@ -1,9 +1,9 @@
 from typing import List
-from barcode_data import barcodeData
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, portrait
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from barcode_data import barcodeData
 
 BARCODE_VERTICAL_INITIAL = 750
 BARCODE_VERTICAL_DIFF = 150
@@ -60,10 +60,11 @@ class MakePdf:
 
         page.drawString(x=position_x,y=position_y,text=barcode_data.product_id)
         page.drawString(x=position_x,y=position_y-font_size*1.2,text=barcode_data.product_name)
-        page.drawImage(barcode_data.barcode_path,position_x,position_y-font_size*1.2-105,
-                       width=200,height=100)
+        page.drawImage(barcode_data.barcode_path,position_x - 130,position_y-font_size*1.2-105,
+                       height=100,
+                       preserveAspectRatio=True,)
         
     def split_list(self,barcode_data:List[barcodeData],n:int):
         for idx in range(0,len(barcode_data),n):
             yield barcode_data[idx:idx+n]
-            
+       

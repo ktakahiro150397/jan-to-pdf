@@ -20,7 +20,6 @@ class MakePdfCustomer:
         page = canvas.Canvas(self.file_path,pagesize=portrait(A4))
 
         # フォントの設定
-        pdfmetrics.registerFont(TTFont('segoe', 'segoe-ui.ttf'))
         pdfmetrics.registerFont(TTFont('meiryo', 'Meiryo.ttf'))
         page.setFont('meiryo', 12)
 
